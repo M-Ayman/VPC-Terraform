@@ -1,5 +1,8 @@
+![alt text](img/Ansible-CloudFormation.png "Add Architecture")
+
 # 1- under terraform.tfvars file, you need to modify access and secret key 
 aws_access_key = "AKIAIVNHIBJXEMOGZNNA"
+
 aws_secret_key = "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"
 
 
