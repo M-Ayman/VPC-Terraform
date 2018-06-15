@@ -16,7 +16,7 @@ variable "aws_region" {
 
 variable "ami" {
   description = "AMI id"
-  default     = "ami-e251209a" # Amazon Linux AMI
+  default     = "ami-db710fa3" # ubuntu
 }
 
 variable "instance_type" {

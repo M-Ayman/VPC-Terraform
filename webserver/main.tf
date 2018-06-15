@@ -19,7 +19,7 @@ resource "aws_security_group" "web" {
     protocol                  = "tcp"
     cidr_blocks               = ["0.0.0.0/0"]
   }
-  
+
   ingress {
     from_port                 = -1
     to_port                   = -1
@@ -48,9 +48,13 @@ resource "aws_instance" "web-1" {
   subnet_id                   = "${var.subnet_id}"
   associate_public_ip_address = true
   source_dest_check           = false
-  user_data                   = "${file("${path.module}/apache.sh")}"
-  
+  user_data                   = "${file("${path.module}/update.sh")}"
+
   tags {
     Name                      = "Web Server 1"
-  }
+    }
+  
+provisioner "local-exec" {
+    command = "sleep 180; cd webserver; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu -i '${self.public_ip},' --private-key ./codedeploy.pem ./site.yml"
+}
 }
